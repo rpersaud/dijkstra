@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>DijkstraAlgorithm</name>
+	<name>dijkstra</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,4 +14,16 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/dikjstra/1000.txt</name>
+			<type>1</type>
+			<location>/Users/rpersaud2/Documents/1000.txt</location>
+		</link>
+		<link>
+			<name>src/dikjstra/25000.txt</name>
+			<type>1</type>
+			<location>/Users/rpersaud2/Documents/25000.txt</location>
+		</link>
+	</linkedResources>
 </projectDescription>
