@@ -2,6 +2,13 @@
  * Djikstra's Algorithm for single-source shortest paths
  * @todo read and assign input variables from files in java
  * @todo translate c++ using array data structure - http://bit.ly/dejJL0 
+ * 
+ * Input Format: 
+ * Line1> n=vertices, m=edges (read once)
+ * Line2> source vertex i (read n times)
+ * Line3> neighbor j & weight of edge [i,j] (read m times)  
+ * Line4> blank line (signals reading of next source vertex, update outer for loop)
+ * 
  */
 package dikjstra;
 
@@ -11,23 +18,36 @@ import java.util.*;
 public class DjikstraBinaryHeap {
 	
 	// Instance Variables
-	
-	public static final int GRAPHSIZE = 2048;
-	public static final int INFINITY = GRAPHSIZE*GRAPHSIZE;
-	// public static final int MAX(a, b) = ((a > b) ? (a) : (b));
 
-	private int e; // The number of nonzero edges in the graph 
-	private int n; // The number of nodes in the graph
-	private int[][] dist = new int[GRAPHSIZE][GRAPHSIZE]; // dist[i][j] is the distance between node i and j; or 0 if there is no direct connection
-	private long[] d = new long[GRAPHSIZE]; // d[i] is the length of the shortest path between the source (s) and node i
-	
+	private int sourceVertex;
+	private int neighbor;
+	private int maxVertices; // the number of vertices in the graph
+	private int maxEdges; // the number of nonzero edges in the graph
+	private int[][] edgeWeights; // edgeWeights[i][j] is the distance between node i and j; or 0 if there is no direct connection
+	private long[] d; // d[i] is the length of the shortest path between the source (s) and node i
+	private int graphSize; // set to maxVertices
+	private int infinity; // maxVertices * maxVertices
 	
 	/**
 	 * Default constructor; Initialize and test stubs
 	 */
 	public DjikstraBinaryHeap()
 	{
-		
+		// Read the sample text file
+		try {
+			// Open the file to read
+			FileInputStream fstream = new FileInputStream("1000.txt");
+			// Get the object of the DataInputStream
+			DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader (new InputStreamReader(in));
+			String strLine;
+			// Read File Line by Line
+			while ((strLine = br.readLine()) != null) {
+				System.out.println(strLine);
+			}
+		} catch(Exception e) { // catch exception if any
+			System.err.println("Error: " + e.getMessage());
+		}
 	}
 	
 	public void dijkstra(int s)
@@ -60,8 +80,9 @@ public class DjikstraBinaryHeap {
 	}
 	
 	
-	public static void  main(String args)
+	public static void main (String[] args)
 	{
+	System.out.println("Finished reading file. BYE!");
 	/*
 	int i, j;
 	int u, v, w;
@@ -84,7 +105,9 @@ public class DjikstraBinaryHeap {
 	printD();
 
 	return 0;
+	
 	*/
+	
 	}
 	
 	/**
@@ -93,11 +116,13 @@ public class DjikstraBinaryHeap {
 	 * @param b vertex
 	 * @return integer of shortest path
 	 */
-	public int MAX(int a, int b) {
+	public int MAX(int a, int b)
+	{
 		return ((a > b) ? (a) : (b));
 	}
 	
-	public void printD() {
+	public void printD()
+	{
 		/*
 		int i;
 		for (i = 1; i <= n; ++i)
@@ -110,7 +135,8 @@ public class DjikstraBinaryHeap {
 		*/
 	}
 	
-	public void readFile() {
+	public void readFile()
+	{
 		
 	}
 }
