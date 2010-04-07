@@ -1,7 +1,7 @@
 /**
- * Djikstra's Algorithm for single-source shortest paths
  * @todo read and assign input variables from files in java
  * @todo translate c++ using array data structure - http://bit.ly/dejJL0 
+ * Djikstra's Algorithm for single-source shortest paths
  * 
  * Input Format: 
  * Line1> n=vertices, m=edges (read once)
@@ -13,7 +13,8 @@
 package dikjstra;
 
 import java.io.*;
-import java.util.*;
+import java.util.Scanner;
+
 
 public class DjikstraBinaryHeap {
 	
@@ -36,15 +37,24 @@ public class DjikstraBinaryHeap {
 		// Read the sample text file
 		try {
 			// Open the file to read
-			FileInputStream fstream = new FileInputStream("1000.txt");
+			FileInputStream fstream = new FileInputStream("C:\\Users\\Persaud\\Downloads\\1000.txt");
+			
 			// Get the object of the DataInputStream
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader (new InputStreamReader(in));
-			String strLine;
+			
+			// Read the initial two numbers from the first string atop each file
+			Scanner primer = new Scanner(br.readLine()).useDelimiter("\\s*\\w+=");
+			this.maxVertices = Integer.parseInt(primer.next());
+			this.maxEdges = Integer.parseInt(primer.next());
+			primer.close();
+				
 			// Read File Line by Line
+			String strLine;
 			while ((strLine = br.readLine()) != null) {
 				System.out.println(strLine);
 			}
+			
 		} catch(Exception e) { // catch exception if any
 			System.err.println("Error: " + e.getMessage());
 		}
@@ -79,10 +89,19 @@ public class DjikstraBinaryHeap {
 		*/
 	}
 	
+	public int getMaxEdges() {
+		return this.maxEdges;
+	}
+	public int getMaxVertices() {
+		return this.maxVertices;
+	}
 	
 	public static void main (String[] args)
 	{
-	System.out.println("Finished reading file. BYE!");
+		DjikstraBinaryHeap prog = new DjikstraBinaryHeap();
+		
+		System.out.println("Finished reading file. BYE!");
+		System.out.println("m = " + prog.getMaxEdges());
 	/*
 	int i, j;
 	int u, v, w;
