@@ -20,14 +20,10 @@ public class DjikstraBinaryHeap {
 	
 	// Instance Variables
 
-	private int sourceVertex;
-	private int neighbor;
-	private int maxVertices; // the number of vertices in the graph
-	private int maxEdges; // the number of nonzero edges in the graph
-	private int[][] edgeWeights; // edgeWeights[i][j] is the distance between node i and j; or 0 if there is no direct connection
+	private int vertices; // the number of vertices in the graph (n from file)
+	private int edges; // the number of nonzero edges in the graph (m from file)
+	private int[][] dist; // dist[i][j] is the distance between node i and j; or 0 if there is no direct connection
 	private long[] d; // d[i] is the length of the shortest path between the source (s) and node i
-	private int graphSize; // set to maxVertices
-	private int infinity; // maxVertices * maxVertices
 	
 	/**
 	 * Default constructor; Initialize and test stubs
@@ -45,8 +41,8 @@ public class DjikstraBinaryHeap {
 			
 			// Read the initial two numbers from the first string atop each file
 			Scanner primer = new Scanner(br.readLine()).useDelimiter("\\s*\\w+=");
-			this.maxVertices = Integer.parseInt(primer.next());
-			this.maxEdges = Integer.parseInt(primer.next());
+			this.vertices = Integer.parseInt(primer.next());
+			this.edges = Integer.parseInt(primer.next());
 			primer.close();
 				
 			// Read File Line by Line
@@ -90,10 +86,10 @@ public class DjikstraBinaryHeap {
 	}
 	
 	public int getMaxEdges() {
-		return this.maxEdges;
+		return this.edges;
 	}
 	public int getMaxVertices() {
-		return this.maxVertices;
+		return this.vertices;
 	}
 	
 	public static void main (String[] args)
