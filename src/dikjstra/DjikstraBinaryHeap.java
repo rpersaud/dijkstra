@@ -23,17 +23,18 @@ public class DjikstraBinaryHeap {
 	private int vertices; // the number of vertices in the graph (n from file)
 	private int edges; // the number of nonzero edges in the graph (m from file)
 	private int[][] dist; // dist[i][j] is the distance between node i and j; or 0 if there is no direct connection
+	//private Vector<Integer> dist = new Vector<Integer>();
 	private long[] d; // d[i] is the length of the shortest path between the source (s) and node i
 	
 	/**
 	 * Default constructor; Initialize and test stubs
 	 */
-	public DjikstraBinaryHeap()
+	public DjikstraBinaryHeap(String file)
 	{
 		// Read the sample text file
 		try {
 			// Open the file to read
-			FileInputStream fstream = new FileInputStream("C:\\Users\\Persaud\\Downloads\\1000.txt");
+			FileInputStream fstream = new FileInputStream(file);
 			
 			// Get the object of the DataInputStream
 			DataInputStream in = new DataInputStream(fstream);
@@ -45,10 +46,33 @@ public class DjikstraBinaryHeap {
 			this.edges = Integer.parseInt(primer.next());
 			primer.close();
 				
+			// Setup dist[i][j] matrix
+		//	Vector<Integer> iVec = new Vector<Integer>(this.vertices);
+			this.dist = new int[this.vertices][this.vertices];
+			for (int i=0; i < this.vertices; i++) {
+				for (int j=0; j < this.vertices; j++) {
+					this.dist[i][j] = 0;
+				}
+				
+			}
+			
 			// Read File Line by Line
 			String strLine;
+			int sourceVertex = 0;
 			while ((strLine = br.readLine()) != null) {
-				System.out.println(strLine);
+				if (!strLine.isEmpty()) {
+					String[] tokens = strLine.trim().split("[\\s]+");
+					switch (tokens.length) {
+					case 1:
+						sourceVertex = Integer.parseInt(tokens[0]);
+						break;
+					case 2:
+						this.dist[sourceVertex][Integer.parseInt(tokens[0])] = Integer.parseInt(tokens[1]);
+						break;
+						default:
+							System.out.println("[Warning] Number of digits > 2");
+					}
+				}
 			}
 			
 		} catch(Exception e) { // catch exception if any
@@ -94,10 +118,11 @@ public class DjikstraBinaryHeap {
 	
 	public static void main (String[] args)
 	{
-		DjikstraBinaryHeap prog = new DjikstraBinaryHeap();
+		String file1 = "/Users/robert/Downloads/25000.txt";
+		String file2 = "/Users/robert/Downloads/1000.txt";
+		DjikstraBinaryHeap prog = new DjikstraBinaryHeap(file1);
+	//	System.out.println("dist[0][176] == ? ..." + prog.dist[0][176]);
 		
-		System.out.println("Finished reading file. BYE!");
-		System.out.println("m = " + prog.getMaxEdges());
 	/*
 	int i, j;
 	int u, v, w;
@@ -150,8 +175,4 @@ public class DjikstraBinaryHeap {
 		*/
 	}
 	
-	public void readFile()
-	{
-		
-	}
 }
