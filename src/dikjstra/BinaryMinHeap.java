@@ -1,6 +1,9 @@
 /*
  * Solve the Single-Shortest Path problem with a Binary Heap
  * @see http://www.algolist.net/Data_structures/Binary_heap/Array-based_int_repr
+ * 
+ * @todo incidence list representation of the data
+ * @todo add extract-minimum, decrease-keys methods
  */
 package dikjstra;
 
