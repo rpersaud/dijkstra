@@ -6,22 +6,24 @@
  */
 package dikjstra;
 
+import java.util.Vector;
+
 /**
  * @author RPersaud
  *
  */
 public class DjikstraAlgorithm {
 
-	// Graph<V,E> G; Perhaps incidence list
-	// BinaryMinHeap Q;
-	// Vector<int> S;
+	// Graph<V,E> G; Incidence list
+	BinaryHeap Q;
+	Vector<Integer> S;
 	
 	/*
 	 * Default Constructor
 	 */
 	public DjikstraAlgorithm() 
 	{
-	
+		
 	}
 	
 	public static void main(String[] args)
@@ -38,5 +40,11 @@ public class DjikstraAlgorithm {
 		 * 		for each vertex v e Adj[u]
 		 * 			do Relax(u,v,w)
 		 */
+		
+	}
+	
+	public void initSingleSource(String G, int s)
+	{
+		// assign d[v] to infinity 
 	}
 }
