@@ -22,17 +22,19 @@ public class DjikstraAlgorithm {
 	// Graph<V,E> G; Incidence list
 	BinaryHeap Q;
 	Vector S; // set of vertices where final shortest weights from the source s have been determined
-	Vector [] adjList;
+	Graph G;
 	
 	// Tracking variables
-	private int maxEdges;
-	private int maxVertices;
+//	private int maxEdges;
+	//private int maxVertices;
 	
 	/*
 	 * Default Constructor
 	 */
 	public DjikstraAlgorithm(String file) 
 	{
+		int noV, noE = 0; // number of vertices and edges place holders
+		
 		// Read the sample text file
 		try {
 			// Open the file to read
@@ -44,15 +46,14 @@ public class DjikstraAlgorithm {
 			
 			// Read the initial two numbers from the first string atop each file
 			Scanner primer = new Scanner(br.readLine()).useDelimiter("\\s*\\w+=");
-			maxVertices = Integer.parseInt(primer.next());
-			maxEdges = Integer.parseInt(primer.next());
+			noV = Integer.parseInt(primer.next());
+			noE = Integer.parseInt(primer.next());
 			primer.close();
-			
-			System.out.println("|V| = " + maxVertices + ", |E| = " + maxEdges); // debug
+			G = new Graph(noV, noE);
+				
+			System.out.println("|V| = " + G.getV() + ", |E| = " + G.getE()); // debug
 			
 			// Initialize Adjacency List
-			adjList = new Vector[maxVertices];
-			
 			// Fill Adjacency List
 			// Read File Line by Line
 			String strLine;
@@ -65,12 +66,12 @@ public class DjikstraAlgorithm {
 					switch (tokens.length) {
 					case 1:
 						sourceVertex = Integer.parseInt(tokens[0]);
-						adjList[sourceVertex] = new Vector();
+						G.adjList[sourceVertex] = new Vector();//adjList[sourceVertex] = new Vector();
 						break;
 					case 2:
 						neighbor = Integer.parseInt(tokens[0]);
 						weight = Integer.parseInt(tokens[1]);
-						adjList[sourceVertex].add(Integer.parseInt(tokens[0])); // = Integer.parseInt(tokens[1]);
+						G.adjList[sourceVertex].addNode(sourceVertex, neighbor, weight)//;(Integer.parseInt(tokens[1])); // = Integer.parseInt(tokens[1]);
 						break;
 						default:
 							System.out.println("[Warning] Number of digits > 2");
@@ -78,7 +79,7 @@ public class DjikstraAlgorithm {
 				}
 			}
 			
-			System.out.println("Size of adjacency list = " + adjList.length);
+			System.out.println("Size of adjacency list = " + G.adjList.length);
 			
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
