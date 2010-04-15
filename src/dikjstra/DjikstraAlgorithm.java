@@ -21,8 +21,8 @@ public class DjikstraAlgorithm {
 
 	// Graph<V,E> G; Incidence list
 	BinaryHeap Q;
-	Vector<Integer> S;
-	Vector<Integer> Graph;
+	Vector S; // set of vertices where final shortest weights from the source s have been determined
+	Vector [] adjList;
 	
 	// Tracking variables
 	private int maxEdges;
@@ -44,12 +44,38 @@ public class DjikstraAlgorithm {
 			
 			// Read the initial two numbers from the first string atop each file
 			Scanner primer = new Scanner(br.readLine()).useDelimiter("\\s*\\w+=");
-			this.maxVertices = Integer.parseInt(primer.next());
-			this.maxEdges = Integer.parseInt(primer.next());
+			maxVertices = Integer.parseInt(primer.next());
+			maxEdges = Integer.parseInt(primer.next());
 			primer.close();
 			
-			// Declare size of graph
-			Graph = new Vector<Integer>(this.maxVertices);
+			System.out.println("|V| = " + maxVertices + ", |E| = " + maxEdges); // debug
+			
+			// Initialize Adjacency List
+			adjList = new Vector[maxVertices];
+			
+			// Fill Adjacency List
+			// Read File Line by Line
+			String strLine;
+			int sourceVertex = 0;
+			
+			while ((strLine = br.readLine()) != null) {
+				if (!strLine.isEmpty()) {
+					String[] tokens = strLine.trim().split("[\\s]+");
+					switch (tokens.length) {
+					case 1:
+						sourceVertex = Integer.parseInt(tokens[0]);
+						adjList[sourceVertex] = new Vector();
+						break;
+					case 2:
+						adjList[sourceVertex].add(Integer.parseInt(tokens[0])); // = Integer.parseInt(tokens[1]);
+						break;
+						default:
+							System.out.println("[Warning] Number of digits > 2");
+					}
+				}
+			}
+			
+			System.out.println("Size of adjacency list = " + adjList.length);
 			
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
@@ -59,11 +85,12 @@ public class DjikstraAlgorithm {
 	public static void main(String[] args)
 	{
 		// Input files to test
-		String file1 = "C:\\Users\\Persaud\\Downloads\\1000.txt";
-		String file2 = "C:\\Users\\Persaud\\Downloads\\25000.txt";
-		
+		// String file1 = "C:\\Users\\Persaud\\Downloads\\1000.txt"; // win
+		String file1 = "/Users/robert/Downloads/1000.txt"; // mac
+		//String file2 = "C:\\Users\\Persaud\\Downloads\\25000.txt";
+		String file2 = "/Users/robert/Downloads/25000.txt"; // mac
 		// Instantiate instance of class
-		DjikstraAlgorithm stub = new DjikstraAlgorithm(file1);
+		DjikstraAlgorithm stub = new DjikstraAlgorithm(file2);
 		
 		// u, v, w = all ints
 		
