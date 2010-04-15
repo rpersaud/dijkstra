@@ -57,6 +57,7 @@ public class DjikstraAlgorithm {
 			// Read File Line by Line
 			String strLine;
 			int sourceVertex = 0;
+			int neighbor, weight = 0;
 			
 			while ((strLine = br.readLine()) != null) {
 				if (!strLine.isEmpty()) {
@@ -67,6 +68,8 @@ public class DjikstraAlgorithm {
 						adjList[sourceVertex] = new Vector();
 						break;
 					case 2:
+						neighbor = Integer.parseInt(tokens[0]);
+						weight = Integer.parseInt(tokens[1]);
 						adjList[sourceVertex].add(Integer.parseInt(tokens[0])); // = Integer.parseInt(tokens[1]);
 						break;
 						default:
@@ -85,10 +88,10 @@ public class DjikstraAlgorithm {
 	public static void main(String[] args)
 	{
 		// Input files to test
-		// String file1 = "C:\\Users\\Persaud\\Downloads\\1000.txt"; // win
-		String file1 = "/Users/robert/Downloads/1000.txt"; // mac
-		//String file2 = "C:\\Users\\Persaud\\Downloads\\25000.txt";
-		String file2 = "/Users/robert/Downloads/25000.txt"; // mac
+		String file1 = "C:\\Users\\Persaud\\Downloads\\1000.txt"; // win
+		//String file1 = "/Users/robert/Downloads/1000.txt"; // mac
+		String file2 = "C:\\Users\\Persaud\\Downloads\\25000.txt"; //win
+		//String file2 = "/Users/robert/Downloads/25000.txt"; // mac
 		// Instantiate instance of class
 		DjikstraAlgorithm stub = new DjikstraAlgorithm(file2);
 		
