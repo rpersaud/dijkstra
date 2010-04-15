@@ -7,21 +7,92 @@
  */
 package dikjstra;
 
+import java.util.Vector;
+
 public class BinaryMinHeap {
 	
-    private int[] data;
+    private Vector data;
     private int heapSize;
 
     public BinaryMinHeap(int size) {
-          data = new int[size];
+          data = new Vector(size);
           heapSize = 0;
     }
 
+    /*
+     * 
+     *
+     *public void insert(int value) {
+            if (heapSize == data.length)
+                  throw new HeapException("Heap's underlying storage is overflow");
+            else {
+                  heapSize++;
+                  data[heapSize - 1] = value;
+                  siftUp(heapSize - 1);
+            }
+      }    
+ 
+      …
+     
+private void siftUp(int nodeIndex) {
+            int parentIndex, tmp;
+            if (nodeIndex != 0) {
+                  parentIndex = getParentIndex(nodeIndex);
+                  if (data[parentIndex] > data[nodeIndex]) {
+                        tmp = data[parentIndex];
+                        data[parentIndex] = data[nodeIndex];
+                        data[nodeIndex] = tmp;
+                        siftUp(parentIndex);
+                  }
+            }
+            
+            public void removeMin() {
+            if (isEmpty())
+                  throw new HeapException("Heap is empty");
+            else {
+                  data[0] = data[heapSize - 1];
+                  heapSize--;
+                  if (heapSize > 0)
+                        siftDown(0);
+            }
+      }
+ 
+      …
+ 
+      private void siftDown(int nodeIndex) {
+            int leftChildIndex, rightChildIndex, minIndex, tmp;
+            leftChildIndex = getLeftChildIndex(nodeIndex);
+            rightChildIndex = getRightChildIndex(nodeIndex);
+            if (rightChildIndex >= heapSize) {
+                  if (leftChildIndex >= heapSize)
+                        return;
+                  else
+                        minIndex = leftChildIndex;
+            } else {
+                  if (data[leftChildIndex] <= data[rightChildIndex])
+                        minIndex = leftChildIndex;
+                  else
+                        minIndex = rightChildIndex;
+            }
+            if (data[nodeIndex] > data[minIndex]) {
+                  tmp = data[minIndex];
+                  data[minIndex] = data[nodeIndex];
+                  data[nodeIndex] = tmp;
+                  siftDown(minIndex);
+            }
+      }
+      }*/
+    public void insert(Node elem) 
+    {
+    	// call binheap.insert(new Node(i, INFINITY);
+    	data.add(elem);
+    }
+    
     public int getMinimum() {
           if (isEmpty())
                 throw new HeapException("Heap is empty");
           else
-                return data[0];
+                return data.indexOf(0);
     }
 
     public boolean isEmpty() {

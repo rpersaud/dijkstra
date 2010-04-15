@@ -23,7 +23,7 @@ public class Graph
 		}
 	}
 
-	Vector [] adjList;
+	Vector [] adjList; // [uM]--> [v1,w1] - [v2,w2] - [vN,wN] - [/]
 	private int maxVertices;
 	private int maxEdges;
 	
